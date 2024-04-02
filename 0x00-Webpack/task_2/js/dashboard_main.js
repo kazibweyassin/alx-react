@@ -1,24 +1,24 @@
+// interesting jquery import thanks to babel
 import $ from 'jquery';
+// import lodash
 import _ from 'lodash';
+// styles
+import '../css/main.css';
 
-$(document).ready(function() {
-    $('body').append('<p>Holberton Dashboard</p>');
+// append elements
+$('body').append(`<div id="logo"></div>`);
+$('body').append(`<p>Holberton Dashboard</p>`);
+$('body').append(`<p>Dashboard data for the students</p>`);
+$('body').append(`<button>Click here to get started</button>`);
+$('body').append(`<p id="count"></p>`);
+$('body').append(`<p>Copyright - Holberton School</p>`);
 
-    $('body').append('<p>Dashboard data for the students</p>');
+// bind lodash's debounce to the button
+$('button').on('click', _.debounce(updateCounter, 500));
 
-    $('body').append('<button id="mybutton">Click here to get started</button>');
-
-    $('body').append('<p id="count">0</p>');
-
-    $('body').append('<p>Copyright - Holberton School</p>');
-
-    // Track the number of times the button element is clicked
-    let count = 0;
-    //Denouce the click event on the button with a delay of 500ms
-    const debouncedClick = _.debounce(() => {
-        count += 1;
-        $('#count').text(`${count} clicks on the button`);
-}, 500);
-
-    $('#mybutton').on('click', debouncedClick();
-});
+let count  = 0;
+// function to update the counter
+function updateCounter() {
+	count++;
+	$('#count').text(`${count} clicks on the button`);
+}
