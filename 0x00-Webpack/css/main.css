@@ -1,0 +1,18 @@
+#logo  {
+    width: 200px;
+    height: 200px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+#mybutton {
+    margin-right: 10px;
+}
+th {
+    background-image: url(../task_2/assets/holberton-logo.jpg);
+    width: 200px;
+    height: 200px;
+}
