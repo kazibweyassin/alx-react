@@ -1,24 +1,30 @@
-import { getFullYear } from './utils';
-import { getFooterCopy } from './utils';
-import { getLatestNotification } from './utils';
-describe('getFullYear', () => {
-    it('should return the current year', () => {
-        const currentYear = new Date().getFullYear();
-        expect(getFullYear()).toEqual(currentYear);
-    });
+import React from 'react';
+import { act } from 'react-dom/test-utils';
+import { getFullYear, getFooterCopy, getLatestNotification } from './utils'
+
+
+// test to check getFullYear returns correct year
+test('getFullYear returns correct year', () => {
+	  expect(getFullYear()).toBe(2022);
 });
 
-describe('getFooterCopy', () => {
-    it('should return the correct string when the argument is true', () => {
-        const isIndex = true;
-        const expected = 'Copywright © 2022 - All rights reserved';
-        expect(getFooterCopy(isIndex)).toEqual(expected);
-    });
+
+// test to check that getFooter returns correct string
+// when arg is false
+test('getFooter returns correct string if false', () => {
+    expect(getFooterCopy(false)).toBe('Holberton School main dashboard');
 });
 
-describe('getLatestNotification', () => {
-    it('should return the latest notification string', () => {
-        const expected = 'This is the latest notification';
-        expect(getLatestNotification()).toEqual(expected);
-    });
+// test to check that getFooter returns correct string
+// when arg is true
+test('getFooter returns correct string if true', () => {
+	expect(getFooterCopy(true)).toBe('Holberton School');
+});
+
+
+
+// test to check that getLatestNotification returns correct
+// html string
+test('getLatestNotification returns correct html string', () => {
+    expect(getLatestNotification().__html).toBe('<strong>Urgent requirement</strong> - complete by EOD');
 });
