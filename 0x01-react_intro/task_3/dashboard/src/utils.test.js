@@ -22,4 +22,3 @@ describe('getLatestNotification', () => {
         expect(getLatestNotification()).toEqual(expected);
     });
 });
-
