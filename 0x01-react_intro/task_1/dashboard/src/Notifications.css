@@ -1,0 +1,13 @@
+.Notifications {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.Notifications p {
+    font-size: 16px;
+    color: #212521;
+
+}
