@@ -12,7 +12,7 @@ const CourseListRow = ({ isHeader, textFirstCell, textSecondCell }) => {
 		backgroundColor: '#f5f5f5ab'
 	};
 	const header_row_backgroundColor = { 
-		backgroundColor: 'deb5b545'
+		backgroundColor: '#deb5b545'
 	};
 	let node;
 	let style;
