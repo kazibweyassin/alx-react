@@ -1,24 +1,71 @@
-import { shallow } from 'enzyme';
-import React from 'react';
-import CourseListRow from './CourseListRow';
+import React from 'react'
+import { StyleSheet, css } from 'aphrodite';
+import propTypes from 'prop-types'
+import { css } from 'aphrodite';
 
 
-// shallow render CourseListRow component
-describe('<CourseListRow />', () => {
-	it(`When isHeader is true, renders on cell with colspan=2
-	when textSecondCell does not exist`, () => {
-		const wrapper = shallow(<CourseListRow isHeader={true} textFirstCell="test" />);
-		expect(wrapper.find('th').exists()).toBe(true);
-	})
+const CourseListRow = ({ isHeader, textFirstCell, textSecondCell }) => {
+	// props:
+	// - isHeader: bool, default: false
+	// - textFirstCell: string, required
+	// - textSecondCell: string, default: null
+	const row_background_color = { backgroundColor: '#f5f5f5ab' };
+	const header_row_background_color = { backgroundColor: '#deb5b545' };
+	let node;
+	let style;
 
-	it(`When isHeader is true, renders two cells when textSecondCell is present`, () => {
-		const wrapper = shallow(<CourseListRow isHeader={true} textFirstCell="test" textSecondCell="test2" />);
-		expect(wrapper.find('th').length).toBe(2);
-	})
+	if (isHeader) {
+		style = header_row_background_color;
+		if (!textSecondCell) {
+			node = <th colSpan="2" className={css(rowStyles.th)}>{textFirstCell}</th>;
+		} else {
+			node =
+				<React.Fragment>
+					<th className={css(rowStyles.NOTth)}>{textFirstCell}</th>
+					<th className={css(rowStyles.NOTth)}>{textSecondCell}</th>
+				</React.Fragment>;
+		}
+	} else {
+		style = row_background_color;
+		node =
+			<React.Fragment>
+				<td>{textFirstCell}</td>
+				<td>{textSecondCell}</td>
+			</React.Fragment>;
+	}
+	return (
+		<tr style={style}>
+			{node}
+		</tr>
+	);
+}
 
-	it(`When isHeader is false, renders two td elements within a tr element`, () => {
-		const wrapper = shallow(<CourseListRow isHeader={false} textFirstCell="test" textSecondCell="test2" />);
-		expect(wrapper.find('tr').length).toBe(1);
-		expect(wrapper.find('td').length).toBe(2);
-	})
+const rowStyles = StyleSheet.create({
+	th: {
+		textAlign: 'center',
+		border: `1px solid`,
+		paddingBottom: `0.5rem`
+	},
+
+	NOTth: {
+		textAlign: 'start',
+		borderBottom: `1px solid`,
+	}
 })
+
+
+CourseListRow.defaultProps = {
+	isHeader: false,
+	textSecondCell: null
+}
+
+CourseListRow.propTypes = {
+	isHeader: propTypes.bool,
+	textFirstCell: propTypes.string.isRequired,
+	textSecondCell: propTypes.oneOfType([
+		propTypes.string,
+		propTypes.number,
+	])
+}
+
+export default CourseListRow
