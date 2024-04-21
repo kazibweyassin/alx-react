@@ -1,6 +1,5 @@
 import React from 'react'
 import propTypes from 'prop-types'
-import './CourseList.css'
 
 
 const CourseListRow = ({ isHeader, textFirstCell, textSecondCell }) => {
